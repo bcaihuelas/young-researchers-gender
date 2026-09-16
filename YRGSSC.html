@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+  Young Researchers in Gender and Social Sciences Conference
+  ---------------------------------------------------------
+  Página completa en un solo archivo. Para editarla:
+    · Los datos generales (título, fechas, sede, contacto) están en el <header>
+      y en la sección "Practical information".
+    · El programa está en <section id="programme">. Cada bloque de panel sigue
+      siempre la misma estructura: <div class="slot"> con la hora, el título,
+      la línea de chair/discussants y la lista de ponencias.
+    · Para marcar una ponencia pendiente, usa <span class="tbc">Title to be
+      confirmed</span>.
+    · Los colores y tipos están en :root, al principio del <style>.
+  Para publicar en GitHub Pages: sube este archivo como index.html a un
+  repositorio y activa Pages en Settings → Pages → Deploy from a branch.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Young Researchers in Gender and Social Sciences Conference — 11–12 November 2026</title>
+<meta name="description" content="Two-day conference for early-career researchers working on gender inequalities across the social sciences. Universidad Carlos III de Madrid, 11–12 November 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1721;
+    --violet:#5b2a86;
+    --violet-soft:#ece3f4;
+    --paper:#ffffff;
+    --muted:#6a6472;
+    --rule:#ddd8e2;
+    --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans:"Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:400 17px/1.6 var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px}
+  a{color:var(--violet)}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--violet); outline-offset:3px}
+
+  /* ---------- cabecera ---------- */
+  header{padding:72px 0 40px; border-bottom:3px solid var(--violet)}
+  h1{
+    font:600 clamp(32px,6vw,54px)/1.08 var(--serif);
+    margin:0 0 20px; letter-spacing:-0.015em; max-width:14ch;
+  }
+  .facts{font-size:19px; line-height:1.5}
+  .facts b{font-weight:600}
+  .provisional{
+    display:inline-block; margin:-8px 0 28px; padding:5px 12px;
+    background:var(--violet-soft); color:var(--violet);
+    font-size:15px; font-weight:600; border-radius:2px;
+  }
+  nav{margin-top:34px; font-size:16px}
+  nav a{margin-right:22px; text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px}
+  nav a:hover{border-bottom-color:var(--violet)}
+
+  /* ---------- secciones ---------- */
+  section{padding:56px 0; border-bottom:1px solid var(--rule)}
+  h2{font:600 28px/1.2 var(--serif); margin:0 0 24px}
+  h3{font:600 21px/1.3 var(--serif); margin:0 0 6px}
+  p{max-width:68ch; margin:0 0 18px}
+  .lede{font-size:18px}
+
+  /* ---------- programa ---------- */
+  .day{
+    font:600 20px/1.2 var(--serif); margin:44px 0 20px;
+    padding-bottom:8px; border-bottom:2px solid var(--ink);
+  }
+  .day:first-of-type{margin-top:0}
+  .slot{display:grid; grid-template-columns:118px 1fr; gap:24px; padding:20px 0; border-bottom:1px solid var(--rule)}
+  .slot:last-child{border-bottom:none}
+  .time{font-variant-numeric:tabular-nums; color:var(--muted); font-size:16px; padding-top:3px}
+  .roles{font-size:16px; color:var(--muted); margin:8px 0 14px}
+  .roles b{color:var(--ink); font-weight:600}
+  .papers{list-style:none; margin:0; padding:0}
+  .papers li{padding:9px 0 9px 15px; border-left:2px solid var(--violet-soft)}
+  .who{font-weight:600}
+  .where{color:var(--muted); font-weight:400}
+  .title{display:block; font-family:var(--serif); font-size:17px}
+  .tbc{color:var(--muted); font-style:italic}
+  .break{color:var(--muted)}
+  .break h3{font-family:var(--sans); font-size:17px; font-weight:400; color:var(--muted)}
+
+  /* ---------- listas de personas ---------- */
+  .people{list-style:none; margin:0 0 28px; padding:0; columns:2; column-gap:40px}
+  .people li{break-inside:avoid; padding:5px 0}
+  .people .where{display:block; font-size:15px}
+  .sub{font:600 17px/1.3 var(--sans); margin:0 0 12px}
+
+  footer{padding:40px 0 64px; font-size:15px; color:var(--muted)}
+  footer p{max-width:68ch}
+
+  @media (max-width:620px){
+    .slot{grid-template-columns:1fr; gap:6px}
+    .time{padding-top:0; font-weight:600; color:var(--ink)}
+    .people{columns:1}
+    nav a{display:inline-block; margin:0 18px 10px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Young Researchers in Gender and Social Sciences Conference</h1>
+    <div class="facts">
+      <b>11–12 November 2026</b><br>
+      Puerta de Toledo Campus, Universidad Carlos III de Madrid<br>
+      Room 1.A.01
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#programme">Programme</a>
+      <a href="#roundtable">Roundtable</a>
+      <a href="#organisation">Organisation</a>
+      <a href="#practical">Practical information</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ ABOUT ============================ -->
+<section id="about">
+  <div class="wrap">
+    <h2>About the conference</h2>
+    <p class="lede">The conference brings together early-career researchers working on gender
+      inequalities across the social sciences, and gives them a space to present ongoing work,
+      receive prepared comments and build contacts beyond their own institution.</p>
+    <p>Four thematic panels and a closing roundtable cover political behaviour, socialization,
+      backlash and the far right, labour markets, care work, migration, representation and
+      gender-based violence. Each panel is chaired by a postdoctoral or mid-career researcher
+      and has two discussants, so that every paper is discussed rather than simply presented.</p>
+    <p>Undergraduate and master's students are welcome to attend any session.</p>
+  </div>
+</section>
+
+<!-- =========================== PROGRAMME ========================= -->
+<section id="programme">
+  <div class="wrap">
+    <h2>Programme</h2>
+    <p class="provisional">Provisional programme — subject to change</p>
+
+    <div class="day">Wednesday, 11 November</div>
+
+    <div class="slot">
+      <div class="time">9:30–9:45</div>
+      <div>
+        <h3>Welcome</h3>
+        <p style="margin:0">Welcome by the organisers.</p>
+      </div>
+    </div>
+
+    <div class="slot">
+      <div class="time">9:45–11:15</div>
+      <div>
+        <h3>Panel 1 · Gender, Political Socialization and Democratic Engagement</h3>
+        <div class="roles"><b>Chair:</b> Berta Caihuelas Navajas &nbsp;&nbsp; <b>Discussants:</b> Eva Anduiza, Mónica Ferrín</div>
+        <ul class="papers">
+          <li><span class="who">David Sánchez</span> <span class="where">(UC3M)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Lidia Núñez-Alañón</span> <span class="where">(UC3M)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Rebeca González Antuña</span> <span class="where">(University of Lucerne)</span>
+            <span class="title">Compared to Whom? Gender, Generation, and the Reference Groups of Young Men's Grievance</span></li>
+          <li><span class="who">Raúl Villegas</span> <span class="where">(UC3M)</span>
+            <span class="title">Too Busy to Become Political: Early Life Working Hours and the Gendered Development of Political Interest</span></li>
+          <li><span class="who">María Ruiz</span> <span class="where">(Universitat Autònoma de Barcelona)</span>
+            <span class="title">When Work Fails Men: Labour Market Insecurity and Populist Attitudes in Spain</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slot break">
+      <div class="time">11:15–11:45</div>
+      <div><h3>Coffee break</h3></div>
+    </div>
+
+    <div class="slot">
+      <div class="time">11:45–13:15</div>
+      <div>
+        <h3>Panel 2 · Gender Backlash, Polarization and the Far Right</h3>
+        <div class="roles"><b>Chair:</b> Nerea Gándara Guerra &nbsp;&nbsp; <b>Discussants:</b> Irene Sánchez-Vítores, Marta Fraile</div>
+        <ul class="papers">
+          <li><span class="who">Zoe Abrams</span> <span class="where">(University of Oxford)</span>
+            <span class="title">Feminism, Backlash and the Youth Gender Gap in Republican Voting in the United States</span></li>
+          <li><span class="who">Álvaro Calvo</span> <span class="where">(Universidade da Coruña)</span>
+            <span class="title">Catalysts or Echo Chambers? Anti-Gender YouTube, Modern Sexism, and Radical-right Support</span></li>
+          <li><span class="who">Irene Jiménez-Bravo</span> <span class="where">(Universitat Autònoma de Barcelona)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Alejandro Tirado Castro</span> <span class="where">(IPP-CSIC)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slot break">
+      <div class="time">13:15–14:45</div>
+      <div><h3>Lunch break</h3></div>
+    </div>
+
+    <div class="slot">
+      <div class="time">14:45–16:15</div>
+      <div>
+        <h3>Panel 3 · Gender Inequalities Across the Life Course</h3>
+        <div class="roles"><b>Chair:</b> Misun Lim &nbsp;&nbsp; <b>Discussants:</b> Leire Salazar, Alicia García-Sierra</div>
+        <ul class="papers">
+          <li><span class="who">Florencia Caro</span> <span class="where">(UC3M)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Milica Vranic</span> <span class="where">(UC3M, Department of Economics)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Patricia Lorente</span> <span class="where">(UC3M)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">María Rubio</span> <span class="where">(Universitat Autònoma de Barcelona)</span>
+            <span class="title">The Stratified Effect of Extreme Temperatures on Birth Weight: The Role of Energy Prices</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">Thursday, 12 November</div>
+
+    <div class="slot">
+      <div class="time">9:30–11:00</div>
+      <div>
+        <h3>Panel 4 · Institutions, Representation and Gendered Violence</h3>
+        <div class="roles"><b>Chair:</b> Annelien Bouland &nbsp;&nbsp; <b>Discussants:</b> Silvia Clavería, Gema García Albacete</div>
+        <ul class="papers">
+          <li><span class="who">María Alonso</span> <span class="where">(UC3M)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Isabel Rodríguez Marín</span> <span class="where">(Collegio Carlo Alberto)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Leire Rincón</span> <span class="where">(Universitat Autònoma de Barcelona)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+          <li><span class="who">Alba Hiudobro</span> <span class="where">(Universitat Pompeu Fabra)</span>
+            <span class="title tbc">Title to be confirmed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slot break">
+      <div class="time">11:00–11:30</div>
+      <div><h3>Coffee break</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== ROUNDTABLE ======================== -->
+<section id="roundtable">
+  <div class="wrap">
+    <h2>Roundtable</h2>
+    <h3>Challenges and Horizons in Gender Research and the Social Sciences</h3>
+    <p class="roles" style="margin-top:6px">Thursday, 12 November, 11:30–13:00</p>
+    <p>Senior and early-career scholars discuss the main challenges facing gender research
+      today: interdisciplinarity, publication strategies, research funding, and the future of
+      gender studies within the social sciences.</p>
+    <ul class="people">
+      <li>Gema García Albacete <span class="where">UC3M</span></li>
+      <li>Marta Fraile <span class="where">CSIC</span></li>
+      <li>Eva Anduiza <span class="where">Universitat Autònoma de Barcelona</span></li>
+      <li>Leire Salazar <span class="where">CSIC</span></li>
+      <li>Silvia Clavería <span class="where">UC3M</span></li>
+      <li>Irene Sánchez-Vítores <span class="where">Universidad Rey Juan Carlos</span></li>
+      <li>Celia Valiente <span class="where">UC3M</span></li>
+      <li>Mónica Ferrín <span class="where">Universidade da Coruña</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================== ORGANISATION ======================= -->
+<section id="organisation">
+  <div class="wrap">
+    <h2>Organisation</h2>
+
+    <p class="sub">Organising committee</p>
+    <ul class="people">
+      <li>Berta Caihuelas Navajas <span class="where">UC3M, postdoctoral researcher</span></li>
+      <li>Lidia Núñez Alañón <span class="where">UC3M, PhD candidate</span></li>
+      <li>Gema García Albacete <span class="where">UC3M, associate professor</span></li>
+      <li>Álvaro San Román del Pozuelo <span class="where">UC3M, PhD candidate</span></li>
+      <li>David Sánchez Pérez <span class="where">UC3M, PhD candidate</span></li>
+    </ul>
+
+    <p class="sub">Scientific committee</p>
+    <ul class="people">
+      <li>Alejandro Tirado Castro <span class="where">IPP-CSIC</span></li>
+      <li>Rebeca González Antuña <span class="where">University of Lucerne</span></li>
+      <li>Juan Antonio Mayoral Díaz-Asensio <span class="where">UC3M</span></li>
+      <li>Pilar Sánchez Bellosta <span class="where">University of Oxford</span></li>
+      <li>Isabel Rodríguez Marín <span class="where">Collegio Carlo Alberto</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================== PRACTICAL ========================= -->
+<section id="practical">
+  <div class="wrap">
+    <h2>Practical information</h2>
+    <p><b>Venue.</b> Puerta de Toledo Campus, Universidad Carlos III de Madrid, Room 1.A.01.
+      Ronda de Toledo 1, 28005 Madrid.</p>
+    <p><b>Attendance.</b> Sessions are open to undergraduate and master's students of the
+      faculty. No registration is needed to attend.</p>
+    <p><b>Contact.</b> Berta Caihuelas Navajas,
+      <a href="mailto:bcaihuel@clio.uc3m.es">bcaihuel@clio.uc3m.es</a> &nbsp;·&nbsp;
+      Lidia Núñez Alañón, <a href="mailto:linuneza@pa.uc3m.es">linuneza@pa.uc3m.es</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Organised by the Department of Social Sciences, Universidad Carlos III de Madrid, with the
+      support of the UC3M Equality Unit and the Faculty of Social Sciences and Law.</p>
+  </div>
+</footer>
+
+</body>
+</html>
