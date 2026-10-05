@@ -42,7 +42,9 @@
     font:400 17px/1.6 var(--sans);
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:1140px; margin:0 auto; padding:0 40px}
+  /* Ancho de la pagina: crece con la ventana hasta 1400px.
+     Si lo quieres mas estrecho, baja ese 1400px. */
+  .wrap{width:min(100% - 80px, 1400px); margin:0 auto}
   a{color:var(--violet)}
   a:focus-visible, button:focus-visible{outline:2px solid var(--violet); outline-offset:3px}
 
@@ -50,7 +52,7 @@
   header{padding:72px 0 40px; border-bottom:3px solid var(--violet)}
   h1{
     font:600 clamp(32px,5.5vw,62px)/1.06 var(--serif);
-    margin:0 0 24px; letter-spacing:-0.015em; max-width:18ch;
+    margin:0 0 24px; letter-spacing:-0.015em;
   }
   .facts{font-size:19px; line-height:1.5}
   .facts b{font-weight:600}
@@ -67,7 +69,7 @@
   section{padding:56px 0; border-bottom:1px solid var(--rule)}
   h2{font:600 28px/1.2 var(--serif); margin:0 0 24px}
   h3{font:600 21px/1.3 var(--serif); margin:0 0 6px}
-  p{max-width:68ch; margin:0 0 18px}
+  p{margin:0 0 18px; line-height:1.68}
   .lede{font-size:18px}
 
   /* ---------- programa ---------- */
@@ -87,6 +89,9 @@
   .where{color:var(--muted); font-weight:400}
   .title{display:block; font-family:var(--serif); font-size:17px}
   .tbc{color:var(--muted); font-style:italic}
+  .slot-note{margin:6px 0 2px}
+  .slot[id]{scroll-margin-top:16px}
+  .papers li:has(> .where:last-child){padding-top:6px; padding-bottom:6px}
   .break{color:var(--muted)}
   .break h3{font-family:var(--sans); font-size:17px; font-weight:400; color:var(--muted)}
 
@@ -96,17 +101,35 @@
   .people .where{display:block; font-size:15px}
   .sub{font:600 17px/1.3 var(--sans); margin:0 0 12px}
 
-  footer{padding:40px 0 64px; font-size:15px; color:var(--muted)}
-  footer p{max-width:68ch}
+  footer{padding:44px 0 64px; font-size:15px; color:var(--muted)}
+  .funders > p{margin:0 0 26px; font-size:15px; color:var(--muted)}
+  .logos{display:flex; align-items:flex-end; gap:56px; flex-wrap:wrap}
+  .funder{max-width:300px}
+  .logo-box{display:flex; align-items:flex-end; height:62px; margin-bottom:12px}
+  .logo-box img{display:block; width:auto; max-width:100%}
+  .funder .name{font-size:14px; line-height:1.4; color:var(--muted)}
+  img.ijl{max-height:38px}
+  img.uc3m{max-height:48px}
+  img.ccssjj{max-height:62px}
+  @media (max-width:620px){
+    .logos{gap:32px}
+    .funder{max-width:none}
+    .logo-box{height:52px}
+    img.ijl{max-height:32px}
+    img.uc3m{max-height:40px}
+    img.ccssjj{max-height:52px}
+  }
+
 
   @media (max-width:900px){
-    .wrap{padding:0 28px}
+    .wrap{width:min(100% - 56px, 1400px)}
     .people{columns:2}
   }
   @media (max-width:620px){
     .slot{grid-template-columns:1fr; gap:6px}
     .time{padding-top:0; font-weight:600; color:var(--ink)}
     .people{columns:1}
+    .wrap{width:min(100% - 32px, 1400px)}
     nav a{display:inline-block; margin:0 18px 10px 0}
   }
 </style>
@@ -168,7 +191,6 @@
         <h3>Panel 1 · Gender, Political Socialization and Democratic Engagement</h3>
         <div class="roles"><b>Chair:</b> Berta Caihuelas Navajas &nbsp;&nbsp; <b>Discussants:</b> Eva Anduiza, Mónica Ferrín</div>
         <ul class="papers">
-
           <li><span class="who">Lidia Núñez-Alañón</span> <span class="where">(UC3M)</span>
             <span class="title tbc">Title to be confirmed</span></li>
           <li><span class="who">Rebeca González Antuña</span> <span class="where">(University of Lucerne)</span>
@@ -251,28 +273,26 @@
       <div class="time">11:00–11:30</div>
       <div><h3>Coffee break</h3></div>
     </div>
-  </div>
-</section>
 
-<!-- =========================== ROUNDTABLE ======================== -->
-<section id="roundtable">
-  <div class="wrap">
-    <h2>Roundtable</h2>
-    <h3>Challenges and Horizons in Gender Research and the Social Sciences</h3>
-    <p class="roles" style="margin-top:6px">Thursday, 12 November, 11:30–13:00</p>
-    <p>Senior and early-career scholars discuss the main challenges facing gender research
-      today: interdisciplinarity, publication strategies, research funding, and the future of
-      gender studies within the social sciences.</p>
-    <ul class="people">
-      <li>Gema García Albacete <span class="where">UC3M</span></li>
-      <li>Marta Fraile <span class="where">CSIC</span></li>
-      <li>Eva Anduiza <span class="where">Universitat Autònoma de Barcelona</span></li>
-      <li>Leire Salazar <span class="where">CSIC</span></li>
-      <li>Silvia Clavería <span class="where">UC3M</span></li>
-      <li>Irene Sánchez-Vítores <span class="where">Universidad Rey Juan Carlos</span></li>
-      <li>Celia Valiente <span class="where">UC3M</span></li>
-      <li>Mónica Ferrín <span class="where">Universidade da Coruña</span></li>
-    </ul>
+    <div class="slot" id="roundtable">
+      <div class="time">11:30–13:00</div>
+      <div>
+        <h3>Roundtable · Challenges and Horizons in Gender Research and the Social Sciences</h3>
+        <p class="slot-note">Senior and early-career scholars discuss the main challenges facing
+          gender research today: interdisciplinarity, publication strategies, research funding,
+          and the future of gender studies within the social sciences.</p>
+        <ul class="papers">
+          <li><span class="who">Gema García Albacete</span> <span class="where">(UC3M)</span></li>
+          <li><span class="who">Marta Fraile</span> <span class="where">(CSIC)</span></li>
+          <li><span class="who">Eva Anduiza</span> <span class="where">(Universitat Autònoma de Barcelona)</span></li>
+          <li><span class="who">Leire Salazar</span> <span class="where">(CSIC)</span></li>
+          <li><span class="who">Silvia Clavería</span> <span class="where">(UC3M)</span></li>
+          <li><span class="who">Irene Sánchez-Vítores</span> <span class="where">(Universidad Rey Juan Carlos)</span></li>
+          <li><span class="who">Celia Valiente</span> <span class="where">(UC3M)</span></li>
+          <li><span class="who">Mónica Ferrín</span> <span class="where">(Universidade da Coruña)</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -317,8 +337,38 @@
 
 <footer>
   <div class="wrap">
-    <p>Organised by the Department of Social Sciences, Universidad Carlos III de Madrid, with the
-      support of the UC3M Equality Unit and the Faculty of Social Sciences and Law.</p>
+
+    <!-- Entidades financiadoras. Los archivos logo-ijl.png, logo-uc3m.png y
+         logo-ccssjj.png van en la misma carpeta que este index.html.
+         Para anadir o quitar una, copia o borra un bloque <div class="funder"> entero. -->
+    <div class="funders">
+      <p>With the support of</p>
+      <div class="logos">
+
+        <div class="funder">
+          <div class="logo-box">
+            <img class="ijl" src="logo-ijl.png" alt="Juan Linz Institute">
+          </div>
+          <div class="name">Juan Linz Institute</div>
+        </div>
+
+        <div class="funder">
+          <div class="logo-box">
+            <img class="uc3m" src="logo-uc3m.png"
+                 alt="Vicerrectorado de Relaciones Institucionales, Igualdad, Cooperación y Desarrollo Sostenible">
+          </div>
+          <div class="name">Unidad de Igualdad</div>
+        </div>
+
+        <div class="funder">
+          <div class="logo-box">
+            <img class="ccssjj" src="logo-ccssjj.png" alt="Facultad de Ciencias Sociales y Jurídicas">
+          </div>
+          <div class="name">Dean's Office, Faculty of Social Sciences and Law</div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </footer>
 
